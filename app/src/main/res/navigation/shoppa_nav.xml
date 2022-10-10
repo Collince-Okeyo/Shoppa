@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_payStackFragment"
+            app:destination="@id/payStackFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -75,4 +78,9 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/payStackFragment"
+        android:name="com.ramgdev.shoppa.ui.fragment.PayStackFragment"
+        android:label="fragment_pay_stack"
+        tools:layout="@layout/fragment_pay_stack" />
 </navigation>

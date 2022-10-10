@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">Shoppa</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="icon_back">Back Icon</string>
+    <string name="proceed_to_pay">Pay</string>
+    <string name="card_details_secured">Your details are safe</string>
+    <string name="card_number">Card Number</string>
+    <string name="asterics">**** **** **** **** **</string>
+    <string name="expiry">Expiry</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="cvv">CVV</string>
+    <string name="asterics_3">***</string>
+    <string name="secured_by_paystack">Secured by Paystack</string>
+    <string name="pay_amount">PAY %1$s</string>
+    <string name="expiry_slash">%1$s/</string>
+    <string name="expiry_space"> %1$s</string>
+    <string name="dashes">____ - ____ - ____ - ____</string>
+    <string name="enter_valid_date_mm_yy">Enter a valid expiry date</string>
 </resources>

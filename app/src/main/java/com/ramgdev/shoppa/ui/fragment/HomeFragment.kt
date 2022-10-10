@@ -1,17 +1,15 @@
 package com.ramgdev.shoppa.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.ramgdev.shoppa.R
 import com.ramgdev.shoppa.adapter.ProductsAdapter
 import com.ramgdev.shoppa.databinding.FragmentHomeBinding
 import com.ramgdev.shoppa.util.Resource
@@ -58,7 +56,6 @@ class HomeFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     binding.progressBar2.isVisible = false
-                    binding.holderImage.isVisible = true
                     Snackbar.make(binding.root, result.message.toString(), Snackbar.LENGTH_LONG).show()
                 }
             }

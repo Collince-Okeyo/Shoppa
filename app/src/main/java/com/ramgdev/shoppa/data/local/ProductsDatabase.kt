@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.ramgdev.shoppa.data.remote.model.Products
 
-@Database(entities = [Products::class], version = 1)
+@Database(entities = [Products::class], version = 1, exportSchema = false)
 abstract class ProductsDatabase: RoomDatabase() {
 
     abstract fun getProductsDao(): ProductsDao

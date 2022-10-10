@@ -10,4 +10,7 @@
     <color name="orange">#FFBF00</color>
     <color name="whiteMain">#FAF9F6</color>
     <color name="blue">#519FE8</color>
+    <color name="green">#008000</color>
+    <color name="main_blue">#0E2F91</color>
+    <color name="main_blue_opaque">#660E2F91</color>
 </resources>

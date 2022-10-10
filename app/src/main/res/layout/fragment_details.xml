@@ -35,7 +35,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_baseline_favorite_24"
+        android:src="@drawable/ic_baseline_favorite_border_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RatingBar
+            <!--<RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -92,28 +92,28 @@
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                 app:layout_constraintStart_toEndOf="@+id/ratingBar"
-                app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+                app:layout_constraintTop_toTopOf="@+id/ratingBar" />-->
 
             <TextView
                 android:id="@+id/tvProductDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="TextView"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="24dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="TextView"
                 android:textColor="@color/black"
