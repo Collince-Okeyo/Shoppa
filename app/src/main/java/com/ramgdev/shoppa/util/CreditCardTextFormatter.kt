@@ -5,7 +5,7 @@ import android.text.TextWatcher
 
 class CreditCardTextFormatter (
     private var separator: String = " - ",
-    private var divider: Int = 5
+    private var divider: Int = 4
 ) : TextWatcher {
 
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

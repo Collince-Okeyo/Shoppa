@@ -4,7 +4,7 @@
     <string name="proceed_to_pay">Pay</string>
     <string name="card_details_secured">Your details are safe</string>
     <string name="card_number">Card Number</string>
-    <string name="asterics">**** **** **** **** **</string>
+    <string name="asterics">*** *** *** *** *</string>
     <string name="expiry">Expiry</string>
     <string name="mm_yy">MM/YY</string>
     <string name="cvv">CVV</string>

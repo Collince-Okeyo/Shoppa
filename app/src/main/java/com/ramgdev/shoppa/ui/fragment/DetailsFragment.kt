@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.ramgdev.shoppa.R
+import com.ramgdev.shoppa.adapter.ProductsAdapter
 import com.ramgdev.shoppa.databinding.FragmentDetailsBinding
-import timber.log.Timber
 
 class DetailsFragment : Fragment() {
 
     private val args: DetailsFragmentArgs by navArgs<DetailsFragmentArgs>()
     private lateinit var binding: FragmentDetailsBinding
+    private lateinit var productsAdapter: ProductsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +41,8 @@ class DetailsFragment : Fragment() {
             findNavController().navigate(R.id.action_detailsFragment_to_homeFragment)
         }
 
-        binding.imageFav.setOnClickListener {
+
+        /*binding.imageFav.setOnClickListener {
             val click: Array<Int> = arrayOf(1, 2)
 
             Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
@@ -50,11 +51,10 @@ class DetailsFragment : Fragment() {
                 break
             }
 
-        }
+        }*/
 
         binding.buttonOrder.setOnClickListener {
-            val makeOrder = PaymentFragment()
-            makeOrder.show(childFragmentManager, "make_payment")
+            findNavController().navigate(R.id.action_detailsFragment_to_paymentFragment2)
         }
 
         return binding.root

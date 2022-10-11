@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button3"
+            android:id="@+id/buttonMpesa"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginStart="16dp"
@@ -42,7 +42,7 @@
             app:strokeColor="@color/green"
             app:strokeWidth="4dp"
             android:drawableLeft="@drawable/mpesa_seeklogo_com"
-            android:text="Lipa Na Mpesa"
+            android:text="Mpesa"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:textColor="@color/green"
@@ -51,21 +51,21 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
+            android:id="@+id/buttonCard"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/white"
-            android:text="Pay With Card"
+            android:text="Card"
             android:textAllCaps="false"
             android:textColor="@color/blue"
             android:textSize="18sp"
             app:cornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/button3"
-            app:layout_constraintStart_toStartOf="@+id/button3"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="@+id/buttonMpesa"
+            app:layout_constraintStart_toStartOf="@+id/buttonMpesa"
+            app:layout_constraintTop_toBottomOf="@+id/buttonMpesa"
             app:strokeColor="@color/blue"
             app:strokeWidth="4dp" />
 

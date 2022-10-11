@@ -58,6 +58,9 @@ class HomeFragment : Fragment() {
                     binding.progressBar2.isVisible = false
                     Snackbar.make(binding.root, result.message.toString(), Snackbar.LENGTH_LONG).show()
                 }
+                else -> {
+                    Timber.d("Exception")
+                }
             }
         })
     }

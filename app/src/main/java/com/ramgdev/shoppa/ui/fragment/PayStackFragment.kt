@@ -3,12 +3,14 @@ package com.ramgdev.shoppa.ui.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import co.paystack.android.Paystack
 import co.paystack.android.PaystackSdk
 import co.paystack.android.PaystackSdk.applicationContext
@@ -18,9 +20,11 @@ import co.paystack.android.model.Card
 import co.paystack.android.model.Charge
 import com.ramgdev.shoppa.R
 import com.ramgdev.shoppa.databinding.FragmentPayStackBinding
+import com.ramgdev.shoppa.util.CreditCardFormatter
 import com.ramgdev.shoppa.util.CreditCardTextFormatter
 import com.ramgdev.shoppa.util.NetworkUtility
 import org.json.JSONException
+import timber.log.Timber
 import java.util.*
 
 class PayStackFragment : Fragment() {
@@ -40,25 +44,22 @@ class PayStackFragment : Fragment() {
 
         return binding.root
     }
+    // Initialize all views here
 
-
-     // Initialize all views here
-
-    private fun initViews(){
-
+    private fun initViews() {
         //add text watcher to edit text fields
         addTextWatcherToEditText()
 
         //set the amount to pay in the button, this could be dynamic, that is why it wasn't added in the activity layout
-        val totalPrice = "₦20,000"
-          binding.btnPay.text = parentFragment?.getString(R.string.pay_amount, totalPrice)
+         val totalPrice = "100.56$"
+           binding.btnPay.text = parentFragment?.getString(R.string.pay_amount, totalPrice)
+
         //handle clicks here
         handleClicks()
     }
 
-     // Add formatting to card number, cvv, and expiry date
-
-    private fun addTextWatcherToEditText(){
+    // Add formatting to card number, cvv, and expiry date
+    private fun addTextWatcherToEditText() {
 
         //Make button UnClickable for the first time
         binding.btnPay.isEnabled = false
@@ -82,7 +83,6 @@ class PayStackFragment : Fragment() {
                         R.drawable.btn_round_opaque
                     )
                 }
-
 
                 //check the length of all edit text, if meet the required length, make button clickable
                 if (s1.length >= 16 && s2.length == 5 && s3.length == 3) {
@@ -113,28 +113,28 @@ class PayStackFragment : Fragment() {
                         );
                         binding.etExpiry.setSelection(1)
                     } else {
-                        binding.etExpiry.setText(parentFragment?.getString(R.string.expiry_slash, s2));
+                        binding.etExpiry.setText(
+                            parentFragment?.getString(
+                                R.string.expiry_slash,
+                                s2
+                            )
+                        );
                         binding.etExpiry.setSelection(3)
                     }
                 }
-
-
             }
 
             override fun afterTextChanged(s: Editable) {
 
             }
         }
-
         //add text watcher
-        binding.etCardNumber.addTextChangedListener(CreditCardTextFormatter()) //helper class for card number formatting
+        binding.etCardNumber.addTextChangedListener(CreditCardFormatter()) //helper class for card number formatting
         binding.etExpiry.addTextChangedListener(watcher)
         binding.etCvv.addTextChangedListener(watcher)
-
-
     }
 
-    private fun handleClicks(){
+    private fun handleClicks() {
 
         //on click of pay button
         binding.btnPay.setOnClickListener {
@@ -151,19 +151,18 @@ class PayStackFragment : Fragment() {
 
             } else {
 
-                Toast.makeText(requireContext(), "Please check your internet", Toast.LENGTH_LONG).show()
-
+                Toast.makeText(requireContext(), "Please check your internet", Toast.LENGTH_LONG)
+                    .show()
             }
-
         }
     }
 
-    private fun doPayment(){
+    private fun doPayment() {
 
-        /*val publicTestKey = "pk_test_359cdc41842728fd136567b62203efb25476e08d"
+        val publicTestKey = "pk_test_359cdc41842728fd136567b62203efb25476e08d"
 
         //set public key
-        PaystackSdk.setPublicKey(publicTestKey)*/
+        PaystackSdk.setPublicKey(publicTestKey)
 
         // initialize the charge
         charge = Charge()
@@ -182,7 +181,6 @@ class PayStackFragment : Fragment() {
         doChargeCard()
 
     }
-
 
     private fun loadCardFromForm(): Card {
 
@@ -231,7 +229,7 @@ class PayStackFragment : Fragment() {
      * DO charge and receive call backs - successful and failed payment
      */
 
-    private fun doChargeCard(){
+    private fun doChargeCard() {
 
         transaction = null
 
@@ -245,7 +243,11 @@ class PayStackFragment : Fragment() {
                 binding.btnPay.visibility = View.VISIBLE
 
                 //successful, show a toast or navigate to another activity or fragment
-                Toast.makeText(requireContext(), "Yeeeee!!, Payment was successful", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Yeeeee!!, Payment was successful",
+                    Toast.LENGTH_LONG
+                ).show()
 
                 this@PayStackFragment.transaction = transaction
 
@@ -268,7 +270,7 @@ class PayStackFragment : Fragment() {
 
                 //stop loading
                 binding.loadingPayOrder.visibility = View.GONE
-                binding.btnPay.visibility =  View.VISIBLE
+                binding.btnPay.visibility = View.VISIBLE
 
                 // If an access code has expired, simply ask your server for a new one
                 // and restart the charge instead of displaying error
@@ -282,13 +284,13 @@ class PayStackFragment : Fragment() {
 
                 if (transaction.reference != null) {
 
-                    Toast.makeText(requireContext(), error.message?:"", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), error.message ?: "", Toast.LENGTH_LONG).show()
 
                     //also you can do a verification on your backend server here
 
                 } else {
 
-                    Toast.makeText(requireContext(), error.message?:"", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), error.message ?: "", Toast.LENGTH_LONG).show()
 
                 }
             }

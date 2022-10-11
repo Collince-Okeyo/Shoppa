@@ -24,21 +24,32 @@ class SplashFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
-
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
 
+        /*Handler().postDelayed({
+                if (user == null && NetworkUtility.isNetworkAvailable(requireContext())) {
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                } else {
+                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                }
+        }, 2000)*/
+
         Handler().postDelayed({
-            if (user == null && NetworkUtility.isNetworkAvailable(requireContext())) {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-            } else {
+            if (NetworkUtility.isNetworkAvailable(requireContext())) {
+                if (user == null && NetworkUtility.isNetworkAvailable(requireContext())) {
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                } else {
+                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                }
+            }else {
                 binding.imageView5.isVisible = true
                 binding.textView6.isVisible = true
-                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                binding.imageView.isVisible = false
             }
         }, 2000)
 
-        return view
+        return binding.root
     }
 
 }

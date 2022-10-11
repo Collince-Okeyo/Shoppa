@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_payStackFragment"
             app:destination="@id/payStackFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_paymentFragment2"
+            app:destination="@id/paymentFragment2" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -82,5 +85,20 @@
         android:id="@+id/payStackFragment"
         android:name="com.ramgdev.shoppa.ui.fragment.PayStackFragment"
         android:label="fragment_pay_stack"
-        tools:layout="@layout/fragment_pay_stack" />
+        tools:layout="@layout/fragment_pay_stack" >
+        <argument
+            android:name="productPrice"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="100.00$" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment2"
+        android:name="com.ramgdev.shoppa.ui.fragment.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment2_to_payStackFragment"
+            app:destination="@id/payStackFragment" />
+    </fragment>
 </navigation>

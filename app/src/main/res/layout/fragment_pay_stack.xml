@@ -67,7 +67,7 @@
             android:digits="0123456789- "
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:maxLength="30"
+            android:maxLength="22"
             android:hint="@string/asterics"
             android:background="@drawable/et_input_with_border_pay"
             app:layout_constraintBottom_toBottomOf="parent"
