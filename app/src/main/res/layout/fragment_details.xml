@@ -33,6 +33,7 @@
         android:id="@+id/imageFav"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:visibility="visible"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/ic_baseline_favorite_border_24"
@@ -140,5 +141,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:layout_constraintEnd_toEndOf="@+id/imageFav"
+        app:layout_constraintStart_toStartOf="@+id/imageFav"
+        app:layout_constraintTop_toTopOf="@+id/imageFav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

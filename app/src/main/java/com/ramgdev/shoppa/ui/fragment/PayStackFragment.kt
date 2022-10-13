@@ -3,33 +3,28 @@ package com.ramgdev.shoppa.ui.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import co.paystack.android.Paystack
 import co.paystack.android.PaystackSdk
 import co.paystack.android.PaystackSdk.applicationContext
 import co.paystack.android.Transaction
-import co.paystack.android.exceptions.ExpiredAccessCodeException
 import co.paystack.android.model.Card
 import co.paystack.android.model.Charge
+import com.ramgdev.shoppa.BuildConfig
 import com.ramgdev.shoppa.R
 import com.ramgdev.shoppa.databinding.FragmentPayStackBinding
 import com.ramgdev.shoppa.util.CreditCardFormatter
-import com.ramgdev.shoppa.util.CreditCardTextFormatter
 import com.ramgdev.shoppa.util.NetworkUtility
 import org.json.JSONException
 import timber.log.Timber
-import java.util.*
 
 class PayStackFragment : Fragment() {
 
-    private var transaction: Transaction? = null
     private var charge: Charge? = null
     private lateinit var binding: FragmentPayStackBinding
 
@@ -40,6 +35,7 @@ class PayStackFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentPayStackBinding.inflate(inflater, container, false)
 
+        initializePaystack()
         initViews()
 
         return binding.root
@@ -51,8 +47,8 @@ class PayStackFragment : Fragment() {
         addTextWatcherToEditText()
 
         //set the amount to pay in the button, this could be dynamic, that is why it wasn't added in the activity layout
-         val totalPrice = "100.56$"
-           binding.btnPay.text = parentFragment?.getString(R.string.pay_amount, totalPrice)
+        val totalPrice = "100.56$"
+        binding.btnPay.text = parentFragment?.getString(R.string.pay_amount, totalPrice)
 
         //handle clicks here
         handleClicks()
@@ -63,7 +59,8 @@ class PayStackFragment : Fragment() {
 
         //Make button UnClickable for the first time
         binding.btnPay.isEnabled = false
-        binding.btnPay.background = ContextCompat.getDrawable(requireContext(), R.drawable.btn_round_opaque)
+        binding.btnPay.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.btn_round_opaque)
 
         //make the button clickable after detecting changes in input field
         val watcher: TextWatcher = object : TextWatcher {
@@ -159,33 +156,25 @@ class PayStackFragment : Fragment() {
 
     private fun doPayment() {
 
-        val publicTestKey = "pk_test_359cdc41842728fd136567b62203efb25476e08d"
-
-        //set public key
-        PaystackSdk.setPublicKey(publicTestKey)
-
         // initialize the charge
         charge = Charge()
         charge!!.card = loadCardFromForm()
 
-        charge!!.amount = 20
+        charge!!.amount = 1
         charge!!.email = "ramgjunior@gmail.com"
-        charge!!.reference = "payment" + Calendar.getInstance().timeInMillis
+//        charge!!.reference = "payment" + Calendar.getInstance().timeInMillis
 
         try {
             charge!!.putCustomField("Charged From", "Android SDK")
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-
         doChargeCard()
-
     }
 
     private fun loadCardFromForm(): Card {
 
         //validate fields
-
         val cardNumber = binding.etCardNumber.text.toString().trim()
         val expiryDate = binding.etExpiry.text.toString().trim()
         val cvc = binding.etCvv.text.toString().trim()
@@ -206,8 +195,7 @@ class PayStackFragment : Fragment() {
         var month = 0
         try {
             month = sMonth.toInt()
-        } catch (ignored: Exception) {
-        }
+        } catch (ignored: Exception) { }
 
         card.expiryMonth = month
 
@@ -216,22 +204,14 @@ class PayStackFragment : Fragment() {
         var year = 0
         try {
             year = sYear.toInt()
-        } catch (ignored: Exception) {
-        }
+        } catch (ignored: Exception) { }
         card.expiryYear = year
 
         return card
 
     }
 
-
-    /**
-     * DO charge and receive call backs - successful and failed payment
-     */
-
     private fun doChargeCard() {
-
-        transaction = null
 
         PaystackSdk.chargeCard(requireActivity(), charge, object : Paystack.TransactionCallback {
 
@@ -241,28 +221,12 @@ class PayStackFragment : Fragment() {
                 //hide loading
                 binding.loadingPayOrder.visibility = View.GONE
                 binding.btnPay.visibility = View.VISIBLE
-
-                //successful, show a toast or navigate to another activity or fragment
-                Toast.makeText(
-                    requireContext(),
-                    "Yeeeee!!, Payment was successful",
-                    Toast.LENGTH_LONG
-                ).show()
-
-                this@PayStackFragment.transaction = transaction
-
-                //now you can store the transaction reference, and perform a verification on your backend server
-
+                parseResponse(transaction.reference)
             }
-
-            // This is called only before requesting OTP
-            // Save reference so you may send to server if
-            // error occurs with OTP
-            // No need to dismiss dialog
 
             override fun beforeValidate(transaction: Transaction) {
 
-                this@PayStackFragment.transaction = transaction
+                Timber.d(transaction.reference)
 
             }
 
@@ -272,35 +236,23 @@ class PayStackFragment : Fragment() {
                 binding.loadingPayOrder.visibility = View.GONE
                 binding.btnPay.visibility = View.VISIBLE
 
-                // If an access code has expired, simply ask your server for a new one
-                // and restart the charge instead of displaying error
-
-                this@PayStackFragment.transaction = transaction
-                if (error is ExpiredAccessCodeException) {
-                    this@PayStackFragment.doChargeCard()
-                    return
-                }
-
-
-                if (transaction.reference != null) {
-
-                    Toast.makeText(requireContext(), error.message ?: "", Toast.LENGTH_LONG).show()
-
-                    //also you can do a verification on your backend server here
-
-                } else {
-
-                    Toast.makeText(requireContext(), error.message ?: "", Toast.LENGTH_LONG).show()
-
-                }
+                Timber.d("Error: ${error.localizedMessage}")
             }
-
         })
+    }
 
+    private fun parseResponse(transactionReference: String) {
+        val message = "Payment Successful - $transactionReference"
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     override fun onPause() {
         super.onPause()
         binding.loadingPayOrder.visibility = View.GONE
+    }
+
+    private fun initializePaystack() {
+        PaystackSdk.initialize(applicationContext)
+        PaystackSdk.setPublicKey(BuildConfig.PSTK_PUBLIC_KEY)
     }
 }
