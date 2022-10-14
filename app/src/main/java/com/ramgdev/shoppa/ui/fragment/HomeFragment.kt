@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
                     val posts  = result.data
                     Timber.d("PRODUCTS::  ${posts.toString()}")
                     productsAdapter.submitList(posts)
-                    binding.productsRecyclerView.adapter = productsAdapter
+                    binding.homeRecyclerView.adapter = productsAdapter
                 }
                 is Resource.Error -> {
                     binding.progressBar2.isVisible = false

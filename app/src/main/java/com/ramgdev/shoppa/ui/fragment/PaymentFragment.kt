@@ -59,11 +59,15 @@ class PaymentFragment : Fragment() {
 
         binding.buttonMpesa.setOnClickListener {
 
-            pay(
-                "0708289107",
-                "1",
-                "Till Number"
-            )
+            try {
+                pay(
+                    "0708289107",
+                    "1",
+                    "Till Number"
+                )
+            } catch (e: Exception) {
+
+            }
 
             /*val phoneNumber = "0742002867"
             val lnmExpress = LNMExpress(
