@@ -9,8 +9,8 @@ import com.ramgdev.shoppa.data.remote.model.favorite.FavoriteEntity
 class FavoritesRepositoryImp(
     private val wishlistDao: FavoritesDao
 ) : FavouritesRepository {
-    override suspend fun insertToWishlist(wishlist: FavoriteEntity) {
-        wishlistDao.insertToWishlist(wishlist.toEntity())
+    override suspend fun insertToWishlist(wishlist: FavouriteEntity) {
+        wishlistDao.insertToWishlist(wishlist)
     }
 
     override fun getWishlist(): LiveData<List<FavouriteEntity>> {
@@ -26,7 +26,7 @@ class FavoritesRepositoryImp(
     }
 
     override suspend fun deleteOneWishlist(wishlist: FavoriteEntity) {
-        wishlistDao.deleteAWishlist(wishlist.toEntity())
+        wishlistDao.deleteAWishlist(wishlist)
     }
 
     override suspend fun deleteAllWishlist() {

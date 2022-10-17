@@ -14,6 +14,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar.OnSearchActionListener
 import com.ramgdev.shoppa.adapter.ProductsAdapter
 import com.ramgdev.shoppa.databinding.FragmentHomeBinding
 import com.ramgdev.shoppa.util.Resource
+import com.ramgdev.shoppa.viewmodel.FavouritesViewModel
 import com.ramgdev.shoppa.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: ProductsViewModel by viewModels()
+    private val cartViewModel: FavouritesViewModel by viewModels()
     private lateinit var productsAdapter: ProductsAdapter
 
     override fun onCreateView(
@@ -34,7 +36,9 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        productsAdapter = ProductsAdapter(ProductsAdapter.OnClickListener{})
+        productsAdapter = ProductsAdapter(ProductsAdapter.OnClickListener{ product ->
+            cartViewModel.addToCart(product)
+        })
 
         subscribeToPostsObserver()
 
@@ -48,10 +52,10 @@ class HomeFragment : Fragment() {
                 searchProducts(text.toString())
             }
 
-            override fun onButtonClicked(buttonCode: Int) {
-
-            }
+            override fun onButtonClicked(buttonCode: Int) {}
         })
+
+
 
         return binding.root
     }

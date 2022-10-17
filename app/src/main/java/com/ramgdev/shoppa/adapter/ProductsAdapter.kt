@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.Navigation
@@ -31,6 +32,7 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
     }
 
     inner class ProductsViewHolder(private val binding: HomeRowBinding): RecyclerView.ViewHolder(binding.root) {
+        val cart = binding.imageViewCart
         @SuppressLint("SetTextI18n")
         fun bind(product: Products?) {
 
@@ -51,13 +53,13 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val product = getItem(position)
-        val cartImage = holder.itemView.findViewById<ImageView>(R.id.imageViewCart)
+        val cartImage = holder.itemView.findViewById<CheckBox>(R.id.imageViewCart)
 
         cartImage.setOnClickListener {
 
         }
 
-        holder.itemView.setOnClickListener {
+        holder.cart.setOnClickListener {
             onClickListener.onClick(product)
         }
 
@@ -67,6 +69,7 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
             Navigation.findNavController(holder.itemView).navigate(action)
         }
         holder.bind(product)
+
     }
 
     class OnClickListener(val clickListener: (products: Products) -> Unit) {

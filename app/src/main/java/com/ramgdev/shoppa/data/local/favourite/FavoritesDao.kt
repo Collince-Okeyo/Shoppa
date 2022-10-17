@@ -21,7 +21,7 @@ interface FavoritesDao {
     fun inWishlist(id: Int): LiveData<Boolean>
 
     @Delete
-    suspend fun deleteAWishlist(wishlistEntity: FavouriteEntity)
+    suspend fun deleteAWishlist(wishlistEntity: com.ramgdev.shoppa.data.remote.model.favorite.FavoriteEntity)
 
     @Query("DELETE FROM wishlist_table")
     suspend fun deleteAllWishlist()
