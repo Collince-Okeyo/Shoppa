@@ -40,4 +40,8 @@ object FavoriteModule {
     fun provideWishlistRepository(wishlistDatabase: FavoriteDatabase): FavouritesRepository {
         return FavoritesRepositoryImp(wishlistDatabase.favoritesDao())
     }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteDao(database: FavoriteDatabase) = database.favoritesDao()
 }

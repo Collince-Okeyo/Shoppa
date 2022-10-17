@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.mancj.materialsearchbar.MaterialSearchBar.OnSearchActionListener
 import com.ramgdev.shoppa.adapter.ProductsAdapter
 import com.ramgdev.shoppa.databinding.FragmentHomeBinding
 import com.ramgdev.shoppa.util.Resource
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 
+@Suppress("IMPLICIT_CAST_TO_ANY")
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -32,12 +34,24 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        productsAdapter = ProductsAdapter(ProductsAdapter.OnClickListener{ products ->
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(products)
-            findNavController().navigate(action)
-        })
+        productsAdapter = ProductsAdapter(ProductsAdapter.OnClickListener{})
 
         subscribeToPostsObserver()
+
+        binding.searchBar.setOnSearchActionListener(object : OnSearchActionListener{
+            override fun onSearchStateChanged(enabled: Boolean) {
+                val s = if (enabled) "enabled" else subscribeToPostsObserver()
+//                Toast.makeText(requireContext(), "Search $s", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSearchConfirmed(text: CharSequence?) {
+                searchProducts(text.toString())
+            }
+
+            override fun onButtonClicked(buttonCode: Int) {
+
+            }
+        })
 
         return binding.root
     }
@@ -66,8 +80,14 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun searchProducts() {
-
+    private fun searchProducts(query: String) {
+        // %" "% because our custom sql query will require that
+        val searchQuery = "%$query%"
+        viewModel.searchDatabase(searchQuery).observe(this) { list ->
+            list.let {
+                productsAdapter.submitList(it)
+            }
+        }
     }
 
 }

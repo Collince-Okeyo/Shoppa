@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import com.ramgdev.shoppa.data.local.favourite.FavoritesDao
 import com.ramgdev.shoppa.data.local.favourite.FavouriteEntity
 import com.ramgdev.shoppa.data.local.favourite.toEntity
-import com.ramgdev.shoppa.data.remote.model.favorite.Favorite
+import com.ramgdev.shoppa.data.remote.model.favorite.FavoriteEntity
 
 class FavoritesRepositoryImp(
     private val wishlistDao: FavoritesDao
 ) : FavouritesRepository {
-    override suspend fun insertToWishlist(wishlist: Favorite) {
+    override suspend fun insertToWishlist(wishlist: FavoriteEntity) {
         wishlistDao.insertToWishlist(wishlist.toEntity())
     }
 
@@ -25,7 +25,7 @@ class FavoritesRepositoryImp(
         return wishlistDao.getOneWishlistItem(id)
     }
 
-    override suspend fun deleteOneWishlist(wishlist: Favorite) {
+    override suspend fun deleteOneWishlist(wishlist: FavoriteEntity) {
         wishlistDao.deleteAWishlist(wishlist.toEntity())
     }
 

@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.ramgdev.shoppa.R
 import com.ramgdev.shoppa.adapter.ProductsAdapter
-import com.ramgdev.shoppa.data.remote.model.favorite.Favorite
+import com.ramgdev.shoppa.data.remote.model.favorite.FavoriteEntity
 import com.ramgdev.shoppa.databinding.FragmentDetailsBinding
 import com.ramgdev.shoppa.viewmodel.FavouritesViewModel
 

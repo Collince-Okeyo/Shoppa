@@ -45,4 +45,8 @@ object AppModule {
     fun provideProductsDatabase(application: Application): ProductsDatabase =
         Room.databaseBuilder(application, ProductsDatabase::class.java, "fake_products").build()
 
+    @Provides
+    @Singleton
+    fun provideDao(database: ProductsDatabase) = database.getProductsDao()
+
 }

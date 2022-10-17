@@ -4,13 +4,18 @@ import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ramgdev.shoppa.R
+import com.ramgdev.shoppa.data.local.repository.FavoritesRepositoryImp
 import com.ramgdev.shoppa.data.remote.model.Products
 import com.ramgdev.shoppa.databinding.HomeRowBinding
+import com.ramgdev.shoppa.ui.fragment.HomeFragmentDirections
 import timber.log.Timber
 
 class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter<Products, ProductsAdapter.ProductsViewHolder>(ProductsDiffUtil) {
@@ -46,8 +51,20 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val product = getItem(position)
+        val cartImage = holder.itemView.findViewById<ImageView>(R.id.imageViewCart)
+
+        cartImage.setOnClickListener {
+
+        }
+
         holder.itemView.setOnClickListener {
             onClickListener.onClick(product)
+        }
+
+        val itemImageView = holder.itemView.findViewById<ImageView>(R.id.imageViewItem)
+        itemImageView.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(product)
+            Navigation.findNavController(holder.itemView).navigate(action)
         }
         holder.bind(product)
     }
@@ -55,4 +72,5 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
     class OnClickListener(val clickListener: (products: Products) -> Unit) {
         fun onClick(products: Products) = clickListener(products)
     }
+
 }

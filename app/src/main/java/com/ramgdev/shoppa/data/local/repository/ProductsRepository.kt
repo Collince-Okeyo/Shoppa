@@ -22,7 +22,7 @@ class ProductsRepository @Inject constructor(
             productsDao.getAllProducts().asFlow()
         },
         fetch = {
-            delay(1000)
+            delay(100)
             productsApiService.getProducts()
         },
         saveFetchResult = { products ->
