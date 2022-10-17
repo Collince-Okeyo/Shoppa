@@ -1,4 +1,4 @@
-package com.ramgdev.shoppa.ui.fragment
+package com.ramgdev.shoppa.ui.fragment.payment
 
 import android.os.Bundle
 import android.view.LayoutInflater

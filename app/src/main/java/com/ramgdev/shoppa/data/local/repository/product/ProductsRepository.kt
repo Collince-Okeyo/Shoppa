@@ -1,8 +1,8 @@
-package com.ramgdev.shoppa.data.local.repository
+package com.ramgdev.shoppa.data.local.repository.product
 
 import androidx.lifecycle.asFlow
 import androidx.room.withTransaction
-import com.ramgdev.shoppa.data.local.ProductsDatabase
+import com.ramgdev.shoppa.data.local.db.ProductsDatabase
 import com.ramgdev.shoppa.data.remote.ProductsApiService
 import com.ramgdev.shoppa.data.remote.model.Products
 import com.ramgdev.shoppa.util.networkBoundResource

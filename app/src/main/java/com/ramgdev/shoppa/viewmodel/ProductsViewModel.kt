@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.ramgdev.shoppa.data.local.repository.ProductsRepository
+import com.ramgdev.shoppa.data.local.repository.product.ProductsRepository
 import com.ramgdev.shoppa.data.remote.model.Products
 import com.ramgdev.shoppa.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

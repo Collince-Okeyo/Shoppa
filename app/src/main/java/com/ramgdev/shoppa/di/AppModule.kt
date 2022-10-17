@@ -2,8 +2,10 @@ package com.ramgdev.shoppa.di
 
 import android.app.Application
 import androidx.room.Room
-import com.ramgdev.shoppa.data.local.ProductsDatabase
-import com.ramgdev.shoppa.data.local.repository.ProductsRepository
+import com.ramgdev.shoppa.data.local.db.ProductsDatabase
+import com.ramgdev.shoppa.data.local.repository.cart.CartRepository
+import com.ramgdev.shoppa.data.local.repository.favorite.FavoritesRepository
+import com.ramgdev.shoppa.data.local.repository.product.ProductsRepository
 import com.ramgdev.shoppa.data.remote.ProductsApiService
 import com.ramgdev.shoppa.util.Constants.BASE_URL
 import dagger.Module
@@ -39,11 +41,25 @@ object AppModule {
         return ProductsRepository(productsApiService, productsDatabase)
     }
 
+    @Provides
+    @Singleton
+    fun provideCartRepository(productsDatabase: ProductsDatabase): CartRepository {
+        return CartRepository(productsDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteRepository(productsDatabase: ProductsDatabase): FavoritesRepository {
+        return FavoritesRepository(productsDatabase)
+    }
+
     // Provide DB
     @Provides
     @Singleton
     fun provideProductsDatabase(application: Application): ProductsDatabase =
-        Room.databaseBuilder(application, ProductsDatabase::class.java, "fake_products").build()
+        Room.databaseBuilder(application, ProductsDatabase::class.java, "fake_products")
+            .allowMainThreadQueries()
+            .build()
 
     @Provides
     @Singleton

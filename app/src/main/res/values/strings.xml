@@ -15,4 +15,6 @@
     <string name="expiry_space"> %1$s</string>
     <string name="dashes">____ - ____ - ____ - ____</string>
     <string name="enter_valid_date_mm_yy">Enter a valid expiry date</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

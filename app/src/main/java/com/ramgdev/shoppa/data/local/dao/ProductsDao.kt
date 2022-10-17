@@ -1,4 +1,4 @@
-package com.ramgdev.shoppa.data.local
+package com.ramgdev.shoppa.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

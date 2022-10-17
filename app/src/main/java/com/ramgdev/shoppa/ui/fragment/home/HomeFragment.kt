@@ -1,10 +1,9 @@
-package com.ramgdev.shoppa.ui.fragment
+package com.ramgdev.shoppa.ui.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,7 +13,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar.OnSearchActionListener
 import com.ramgdev.shoppa.adapter.ProductsAdapter
 import com.ramgdev.shoppa.databinding.FragmentHomeBinding
 import com.ramgdev.shoppa.util.Resource
-import com.ramgdev.shoppa.viewmodel.FavouritesViewModel
+import com.ramgdev.shoppa.viewmodel.CartViewModel
 import com.ramgdev.shoppa.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -26,7 +25,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: ProductsViewModel by viewModels()
-    private val cartViewModel: FavouritesViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
     private lateinit var productsAdapter: ProductsAdapter
 
     override fun onCreateView(
