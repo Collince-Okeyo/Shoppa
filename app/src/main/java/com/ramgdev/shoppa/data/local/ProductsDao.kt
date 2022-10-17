@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.ramgdev.shoppa.data.remote.model.Products
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductsDao {
@@ -23,4 +24,10 @@ interface ProductsDao {
     // Again it will use coroutine to achieve this task
     @Query("DELETE FROM products")
     suspend fun deleteProducts()
+
+    @Query("SELECT * FROM products WHERE title LIKE :searchQuery OR price LIKE :searchQuery")
+    // and then search query will be passed through
+    // the perimeter of this function
+    // and then function will return the flow of list of person
+    fun searchDatabase(searchQuery: String): Flow<List<Products>>
 }

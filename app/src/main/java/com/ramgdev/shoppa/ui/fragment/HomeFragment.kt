@@ -17,6 +17,7 @@ import com.ramgdev.shoppa.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -63,6 +64,10 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun searchProducts() {
+
     }
 
 }

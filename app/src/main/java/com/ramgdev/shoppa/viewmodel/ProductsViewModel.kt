@@ -26,4 +26,8 @@ class ProductsViewModel @Inject constructor(private val productsRepository: Prod
         }
     }
 
+    fun searchDatabase(searchQuery: String): LiveData<List<Products>> {
+        return productsRepository.searchDatabase(searchQuery).asLiveData()
+    }
+
 }

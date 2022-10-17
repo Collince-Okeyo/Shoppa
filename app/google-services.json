@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "640557757268",
+    "project_id": "githubapitest-d2c5f",
+    "storage_bucket": "githubapitest-d2c5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640557757268:android:c4a72ad713b0faecaf0ec1",
+        "android_client_info": {
+          "package_name": "com.ramgdev.githubapitest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640557757268-d2q10uncctaffpmroe5nnic6ugvana2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJiBchlfBSKAdZrYqLAFDhYJCJUBgc1rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640557757268-d2q10uncctaffpmroe5nnic6ugvana2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640557757268:android:5f3258a0f2dfff6baf0ec1",
+        "android_client_info": {
+          "package_name": "com.ramgdev.shoppa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640557757268-d2q10uncctaffpmroe5nnic6ugvana2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJiBchlfBSKAdZrYqLAFDhYJCJUBgc1rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640557757268-d2q10uncctaffpmroe5nnic6ugvana2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

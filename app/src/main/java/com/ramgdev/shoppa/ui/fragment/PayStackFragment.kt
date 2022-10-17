@@ -145,6 +145,7 @@ class PayStackFragment : Fragment() {
 
                 //perform payment
                 doPayment()
+                Toast.makeText(requireContext(), "Payment Successful", Toast.LENGTH_SHORT).show()
 
             } else {
 
@@ -195,7 +196,8 @@ class PayStackFragment : Fragment() {
         var month = 0
         try {
             month = sMonth.toInt()
-        } catch (ignored: Exception) { }
+        } catch (ignored: Exception) {
+        }
 
         card.expiryMonth = month
 
@@ -204,7 +206,8 @@ class PayStackFragment : Fragment() {
         var year = 0
         try {
             year = sYear.toInt()
-        } catch (ignored: Exception) { }
+        } catch (ignored: Exception) {
+        }
         card.expiryYear = year
 
         return card
