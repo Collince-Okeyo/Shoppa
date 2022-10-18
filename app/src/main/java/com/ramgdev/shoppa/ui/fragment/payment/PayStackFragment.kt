@@ -144,19 +144,19 @@ class PayStackFragment : Fragment() {
                 binding.btnPay.visibility = View.GONE
 
                 //perform payment
-                doPayment()
-                Toast.makeText(requireContext(), "Payment Successful", Toast.LENGTH_SHORT).show()
+                if (doPayment()){
+                    Toast.makeText(requireContext(), "Payment Successful", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(requireContext(), "Payment Failed, please ensure you have enough funds", Toast.LENGTH_LONG).show()
+                }
 
             } else {
-
-                Toast.makeText(requireContext(), "Please check your internet", Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(requireContext(), "Payment failed, please check your internet", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun doPayment() {
-
+    private fun doPayment(): Boolean {
         // initialize the charge
         charge = Charge()
         charge!!.card = loadCardFromForm()
@@ -171,6 +171,7 @@ class PayStackFragment : Fragment() {
             e.printStackTrace()
         }
         doChargeCard()
+        return true
     }
 
     private fun loadCardFromForm(): Card {

@@ -9,7 +9,7 @@ import com.ramgdev.shoppa.data.local.entity.CartEntity
 import com.ramgdev.shoppa.data.local.entity.FavoritesEntity
 import com.ramgdev.shoppa.data.remote.model.Products
 
-@Database(entities = [Products::class, CartEntity::class, FavoritesEntity::class], version = 1, exportSchema = false)
+@Database(entities = [Products::class, CartEntity::class, FavoritesEntity::class], version = 2, exportSchema = false)
 abstract class ProductsDatabase: RoomDatabase() {
 
     abstract fun getProductsDao(): ProductsDao

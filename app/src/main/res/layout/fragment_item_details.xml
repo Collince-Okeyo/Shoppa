@@ -29,14 +29,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <CheckBox
         android:id="@+id/imageFav"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:visibility="visible"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:button="@drawable/fav_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

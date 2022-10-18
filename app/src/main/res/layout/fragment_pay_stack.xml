@@ -183,7 +183,7 @@
             app:layout_constraintVertical_bias="0.249" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewDeleteAll"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:src="@drawable/ic_padlock"
@@ -201,11 +201,11 @@
             android:layout_marginStart="10dp"
             android:text="@string/secured_by_paystack"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewDeleteAll"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageViewDeleteAll"
+            app:layout_constraintTop_toTopOf="@+id/imageViewDeleteAll"
             app:layout_constraintVertical_bias="0.0"
             android:layout_marginLeft="10dp" />
 

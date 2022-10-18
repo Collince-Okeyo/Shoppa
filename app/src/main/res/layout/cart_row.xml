@@ -18,13 +18,12 @@
 
         <ImageView
             android:id="@+id/cartImageView"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/cartItemName"

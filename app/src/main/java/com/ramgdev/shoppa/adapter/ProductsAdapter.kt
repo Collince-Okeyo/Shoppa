@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -39,7 +40,6 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
             binding.textViewName.text = product?.title
             binding.textViewCategory.text = product?.category
             binding.textViewPrice.text = "${product?.price.toString()}$"
-
         }
     }
 
@@ -51,8 +51,15 @@ class ProductsAdapter(private val onClickListener: OnClickListener): ListAdapter
         val product = getItem(position)
         holder.bind(product)
 
-        holder.cart.setOnClickListener {
-            onClickListener.onClick(product)
+        val cartIcon = holder.itemView.findViewById<CheckBox>(R.id.imageViewCart)
+        cartIcon.setOnClickListener {
+            val isChecked = cartIcon.isChecked
+            if (isChecked) {
+                onClickListener.onClick(product)
+                Toast.makeText(holder.itemView.context, "Added to cart", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(holder.itemView.context, "Already added to cart", Toast.LENGTH_SHORT).show()
+            }
         }
 
         holder.itemView.setOnClickListener {

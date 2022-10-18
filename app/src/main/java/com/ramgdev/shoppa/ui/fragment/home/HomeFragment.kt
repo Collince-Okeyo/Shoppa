@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
         binding.searchBar.setOnSearchActionListener(object : OnSearchActionListener{
             override fun onSearchStateChanged(enabled: Boolean) {
                 val s = if (enabled) "enabled" else subscribeToPostsObserver()
-//                Toast.makeText(requireContext(), "Search $s", Toast.LENGTH_SHORT).show()
             }
 
             override fun onSearchConfirmed(text: CharSequence?) {
@@ -53,8 +52,6 @@ class HomeFragment : Fragment() {
 
             override fun onButtonClicked(buttonCode: Int) {}
         })
-
-
 
         return binding.root
     }

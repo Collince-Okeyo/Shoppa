@@ -48,7 +48,11 @@
         android:id="@+id/cartFragment"
         android:name="com.ramgdev.shoppa.ui.fragment.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_paymentFragment2"
+            app:destination="@id/paymentFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.ramgdev.shoppa.ui.fragment.favorites.FavoriteFragment"

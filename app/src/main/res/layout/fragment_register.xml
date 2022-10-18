@@ -13,6 +13,9 @@
         android:layout_marginTop="80dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Register"
+        android:textColor="@color/orange"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +84,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:hint="Password"
+        android:hint="Phone number"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
@@ -99,7 +102,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +113,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:elevation="10dp"
-        android:hint="Confirm password"
+        android:hint="Password"
         app:boxStrokeColor="@color/black"
         app:boxStrokeWidthFocused="2dp"
         app:endIconMode="password_toggle"
@@ -161,7 +164,6 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

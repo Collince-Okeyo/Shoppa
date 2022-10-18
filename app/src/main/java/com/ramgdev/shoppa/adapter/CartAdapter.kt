@@ -33,6 +33,8 @@ class CartAdapter(private val onClickListener: OnClickListener) :
 
             Glide.with(binding.cartImageView)
                 .load(cartItem?.image)
+                .centerCrop()
+                .fitCenter()
                 .into(binding.cartImageView)
 
             binding.cartItemName.text = cartItem?.title

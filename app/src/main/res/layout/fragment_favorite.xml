@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewDeleteAll"
         android:layout_width="24dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
