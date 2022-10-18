@@ -5,7 +5,7 @@
 - The API has some endpoints that allows one to fetch all items, items categories, register a user and add items to cart.
 - Contributions are welcomed😂
 
-## Login User
+## How to Login
 - The app uses [Firebase](https://firebase.google.com/) to register and login user. 
 - Create an account with a valid email address and verify before login.
 
