@@ -21,11 +21,10 @@ import timber.log.Timber
 class PaymentFragment : Fragment() {
 
     private lateinit var binding: FragmentPaymentBinding
-//    private lateinit var daraja: Daraja
 
     private val daraja: Daraja = Daraja.with(
-        "5aIbhQsfobZG4VMv8zuIRuwKyocTyhEU",
-        "9Gd9YP4VlQHXaJeO", Env.SANDBOX,
+        "fkgASeWSL1NP3aEj07CLuAjuP9TQez1S",
+        "c6RtBlH0cHiwImCD", Env.SANDBOX,
         object : DarajaListener<AccessToken> {
             override fun onResult(result: AccessToken) {
                 Timber.d("Access Token: ${result.access_token}")
@@ -42,21 +41,6 @@ class PaymentFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
-        /*daraja = Daraja.with(
-            "gOwQ6TsvGmrCgtKs2jZGgqC0EHpK1xRK",
-            "6OXAqARUSf5mzGXl",
-            Env.SANDBOX,
-            object : DarajaListener<AccessToken> {
-                override fun onResult(result: AccessToken) {
-                    Timber.d("Access Token ${result.access_token}")
-                }
-
-                override fun onError(error: String?) {
-                    Timber.d(error.toString())
-                }
-            }
-        )*/
-
         binding.buttonMpesa.setOnClickListener {
 
             try {
@@ -66,36 +50,8 @@ class PaymentFragment : Fragment() {
                     "Till Number"
                 )
             } catch (e: Exception) {
-
+                Timber.d("")
             }
-
-            /*val phoneNumber = "0742002867"
-            val lnmExpress = LNMExpress(
-                "174379",
-                "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
-                TransactionType.CustomerBuyGoodsOnline,
-                "1",
-                phoneNumber,
-                "174379",
-                phoneNumber,
-                "",
-                "001ABC",
-                "Order Payment"
-
-            )
-            daraja.requestMPESAExpress(lnmExpress, object : DarajaListener<LNMResult> {
-                override fun onResult(result: LNMResult) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Success: ${result.ResponseDescription}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onError(error: String?) {
-                    Toast.makeText(requireContext(), "Error!: $error", Toast.LENGTH_SHORT).show()
-                }
-            })*/
         }
         binding.buttonCard.setOnClickListener {
             Toast.makeText(requireContext(), "CLICKED", Toast.LENGTH_SHORT).show()
@@ -110,15 +66,15 @@ class PaymentFragment : Fragment() {
 
         val lnmExpress = LNMExpress(
             "174379",
-            "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
+            "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
             TransactionType.CustomerPayBillOnline,
-            amount,
-            phone,
+            "1",
+            "254742002867",
             "174379",
             phone,
-            "https://mycallback.com",
+            "https://usafi-48370-default-rtdb.firebaseio.com/",
             "001ABC",
-            "Food Payment"
+            "Paybill option"
         )
 
         daraja.requestMPESAExpress(lnmExpress, object :
