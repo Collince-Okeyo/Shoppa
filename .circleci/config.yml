@@ -12,11 +12,6 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say_hello:
-    docker:
-     - image: cimg/base:2022.05
-    steps:
-      - run: echo "Say hello to YAML!"
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:
     # These next lines define the Android machine image executor.
@@ -51,5 +46,4 @@ workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say_hello
       - build-and-test
