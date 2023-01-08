@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.androidstudy.daraja.Daraja
 import com.androidstudy.daraja.DarajaListener
@@ -14,11 +13,12 @@ import com.androidstudy.daraja.model.LNMExpress
 import com.androidstudy.daraja.model.LNMResult
 import com.androidstudy.daraja.util.Env
 import com.androidstudy.daraja.util.TransactionType
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ramgdev.shoppa.R
 import com.ramgdev.shoppa.databinding.FragmentPaymentBinding
 import timber.log.Timber
 
-class PaymentFragment : Fragment() {
+class PaymentFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentPaymentBinding
 
@@ -37,7 +37,7 @@ class PaymentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
@@ -45,7 +45,7 @@ class PaymentFragment : Fragment() {
 
             try {
                 pay(
-                    "0708289107",
+                    "254708289107",
                     "1",
                     "Till Number"
                 )
@@ -59,7 +59,6 @@ class PaymentFragment : Fragment() {
         }
 
         return binding.root
-
     }
 
     private fun pay(phone: String, amount: String, tillNoOrPaybillNo: String) {

@@ -11,12 +11,13 @@
         android:id="@+id/recyclerViewCart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/cart_row" />
 
     <com.google.android.material.card.MaterialCardView
@@ -44,7 +45,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_semi_bold"
-                android:text="3 items"
+                android:text="@string/_3_items"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_semi_bold"
-                android:text="Shipping fee"
+                android:text="@string/shipping_fee"
                 app:layout_constraintStart_toStartOf="@+id/tvItemsCount"
                 app:layout_constraintTop_toBottomOf="@+id/tvItemsCount" />
 
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Total"
+                android:text="@string/total"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textViewShipping"
                 app:layout_constraintTop_toBottomOf="@+id/textViewShipping" />
@@ -75,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="2000.00$"
+                android:text="@string/_2000_00"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvItemsCount"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="50.00$"
+                android:text="@string/_50_00"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewShipping"
                 app:layout_constraintEnd_toEndOf="@+id/tvTotalCost"
@@ -97,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="2050.00$"
+                android:text="@string/_2050_00"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView8"
@@ -113,7 +114,7 @@
                 android:layout_marginBottom="4dp"
                 android:backgroundTint="@color/orange"
                 android:elevation="12dp"
-                android:text="Checkout"
+                android:text="@string/checkout"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:cornerRadius="12dp"
@@ -123,7 +124,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,12 @@
 package com.ramgdev.shoppa.ui.fragment.auth
 
+import android.app.ProgressDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.ramgdev.shoppa.R
@@ -28,7 +27,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -54,6 +53,11 @@ class LoginFragment : Fragment() {
         val email: String = binding.emailEditText.editText?.text.toString()
         val password: String = binding.passwordEditText.editText?.text.toString()
 
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setTitle("Login")
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
+
         when {
             binding.emailEditText.editText?.text.toString().isEmpty() -> {
                 binding.emailEditText.editText?.error = "Email required"
@@ -62,7 +66,7 @@ class LoginFragment : Fragment() {
                 binding.passwordEditText.editText?.error = "Password required"
             }
             else -> {
-                binding.loginProgressBar.visibility = VISIBLE
+                progressDialog.show()
                 binding.signinButton.isEnabled = false
 
                 if (email.isNotEmpty() && password.isNotEmpty()) {
@@ -71,7 +75,7 @@ class LoginFragment : Fragment() {
                             firebaseAuth.signInWithEmailAndPassword(email, password).await()
 
                             withContext(Dispatchers.Main) {
-                                binding.loginProgressBar.visibility = GONE
+                                progressDialog.hide()
                                 binding.signinButton.isEnabled = true
                                 binding.emailEditText.editText?.setText("")
                                 binding.passwordEditText.editText?.setText("")
@@ -87,7 +91,7 @@ class LoginFragment : Fragment() {
                         } catch (e: Exception) {
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
-                                binding.loginProgressBar.visibility = GONE
+                                progressDialog.hide()
                                 binding.signinButton.isEnabled = true
                                 binding.emailEditText.editText?.setText("")
                                 binding.passwordEditText.editText?.setText("")

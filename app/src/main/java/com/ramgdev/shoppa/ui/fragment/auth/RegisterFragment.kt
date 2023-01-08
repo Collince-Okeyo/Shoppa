@@ -1,13 +1,12 @@
 package com.ramgdev.shoppa.ui.fragment.auth
 
+import android.app.ProgressDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -30,7 +29,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -47,31 +46,39 @@ class RegisterFragment : Fragment() {
     //Login with Email and Password
     private fun registerWithEmailAndPassword() {
         val email = binding.emailAddress.editText?.text.toString().trim()
-        val password = binding.enterPassword.editText?.text.toString().trim()
+        val password = binding.password.editText?.text.toString().trim()
         val name = binding.fullName.editText?.text.toString().trim()
-        val cPass = binding.confirmPass.editText?.text.toString().trim()
-        val user = User(name, email)
+        val phoneNumber = binding.phoneNumber.editText?.text.toString().trim()
+        val user = User(
+            name = name,
+            email = email,
+            phone = phoneNumber
+        )
 
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setTitle("Sign up")
+        progressDialog.setMessage("Please wait...")
+        progressDialog.setCancelable(false)
 
         when {
             binding.fullName.editText?.text.toString().isEmpty() -> {
-                binding.fullName.editText?.error = "Enter full name"
+                binding.fullName.editText?.error = "Required"
             }
             binding.emailAddress.editText?.text.toString().isEmpty() -> {
-                binding.emailAddress.editText?.error = "Enter Email"
+                binding.emailAddress.editText?.error = "Required"
             }
-            binding.enterPassword.editText?.text.toString().isEmpty() -> {
-                binding.enterPassword.editText?.error = "Enter Password"
+            binding.phoneNumber.editText?.text.toString().isEmpty() -> {
+                binding.phoneNumber.editText?.error = "Required"
             }
-            binding.confirmPass.editText?.text.toString().isEmpty() -> {
-                binding.confirmPass.editText?.error = "Please confirm password"
+            binding.password.editText?.text.toString().isEmpty() -> {
+                binding.password.editText?.error = "Required"
             }
 
             else -> {
-                binding.progressBar.visibility = VISIBLE
+                progressDialog.show()
                 binding.registerButton.isEnabled = false
 
-                if (email.isNotEmpty() && password.isNotEmpty() && password == cPass) {
+                if (email.isNotEmpty() && password.isNotEmpty()) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             firebaseAuth.createUserWithEmailAndPassword(email, password).await()
@@ -82,8 +89,9 @@ class RegisterFragment : Fragment() {
                                 Toast.makeText(requireContext(), "Account created successfully. Please check your email to verify", Toast.LENGTH_LONG).show()
                                 binding.fullName.editText?.setText("")
                                 binding.emailAddress.editText?.setText("")
-                                binding.enterPassword.editText?.setText("")
-                                binding.confirmPass.editText?.setText("")
+                                binding.password.editText?.setText("")
+                                binding.phoneNumber.editText?.setText("")
+                                progressDialog.hide()
 
                                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                             }
@@ -92,18 +100,18 @@ class RegisterFragment : Fragment() {
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
 
-                                binding.progressBar.visibility = GONE
+                                progressDialog.hide()
                                 binding.registerButton.isEnabled = true
 
                                 binding.fullName.editText?.setText("")
                                 binding.emailAddress.editText?.setText("")
-                                binding.enterPassword.editText?.setText("")
-                                binding.confirmPass.editText?.setText("")
+                                binding.password.editText?.setText("")
+                                binding.phoneNumber.editText?.setText("")
                             }
                         }
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Passwords must be the same", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Invalid Email! Please enter a valid email account", Toast.LENGTH_SHORT).show()
                 }
             }
         }

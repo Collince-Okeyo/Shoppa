@@ -17,4 +17,25 @@
     <string name="enter_valid_date_mm_yy">Enter a valid expiry date</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="login_to_shoppa_to_continue_with_shopping">Login to Shoppa to continue with shopping</string>
+    <string name="me_gmail_com">me@gmail.com</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full name</string>
+    <string name="email_address">Email address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="already_have_an_account_sign_in">Already have an account? Sign in</string>
+    <string name="password_">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="_3_items">3 items</string>
+    <string name="shipping_fee">Shipping fee</string>
+    <string name="total">Total</string>
+    <string name="_2000_00">2000.00$</string>
+    <string name="_50_00">50.00$</string>
+    <string name="_2050_00">2050.00$</string>
+    <string name="checkout">Checkout</string>
 </resources>

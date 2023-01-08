@@ -20,12 +20,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ItemDetailsFragment : Fragment() {
 
-    private var clicked = false
     private val args: ItemDetailsFragmentArgs by navArgs<ItemDetailsFragmentArgs>()
-    val viewModel: FavoritesViewModel by viewModels()
+    private val viewModel: FavoritesViewModel by viewModels()
 
     private lateinit var binding: FragmentItemDetailsBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
